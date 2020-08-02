@@ -6,7 +6,7 @@ describe("API unit test suite", () => {
             expect(list.length).toEqual(5);
         });
         it("returns 'jogging' as first hobby", () => {
-            expect(list[0]).toBe("jogging");
+            expect(list[0]).toBe("swimming");
         });
     })
 })
