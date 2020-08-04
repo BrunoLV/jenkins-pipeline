@@ -1,11 +1,13 @@
 pipeline {
     environment {
-        registry = "BrunoLV/jenkins-pipeline"
+        registry = "brunolv/jenkins-pipeline"
         DOCKER_PWD = credentials('docker-login-pwd')
     }
     agent {
         docker {
-            image 'docker'
+            image 'brunolv/docker-node'
+            args '-p 3000:3000'
+            args '-w /app'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }

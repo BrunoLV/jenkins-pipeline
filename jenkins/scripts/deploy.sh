@@ -32,4 +32,4 @@ echo "Smoke tests..."
 docker container run --name tester \
     --rm \
     --net test-net \
-    node sh -c "curl api:3000"
+    brunolv/docker-node sh -c "curl api:3000"
