@@ -1,7 +1,7 @@
 pipeline {
     environment {
         registry = "brunolv/jenkins-pipeline"
-        DOCKER_PWD = credentials('docker-login-pwd')
+        DOCKER_PWD = credentials('docker-hub')
     }
     agent {
         docker {
