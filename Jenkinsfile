@@ -27,7 +27,7 @@ pipeline {
         }
         stage("Build & Push Docker image") {
             steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'docker-gub',
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'docker-hub',
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']
                 ])
                 sh "docker image build -t $registry:$BUILD_NUMBER ."
