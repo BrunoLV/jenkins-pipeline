@@ -27,11 +27,8 @@ pipeline {
         }
         stage("Build & Push Docker image") {
             steps {
-                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'docker-hub',
-                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']
-                ])
                 sh "docker image build -t $registry:$BUILD_NUMBER ."
-                sh "docker login -u brunolv -p $PASSWORD"
+                sh "docker login -u brunolv -p $credentials_PSW"
                 sh "docker image push $registry:$BUILD_NUMBER"
                 sh "docker image rm $registry:$BUILD_NUMBER"
             }
