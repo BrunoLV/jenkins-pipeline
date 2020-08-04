@@ -28,19 +28,20 @@ pipeline {
         stage("Build & Push Docker image") {
             steps {
                 sh "docker image build -t $registry:$BUILD_NUMBER ."
-                sh "docker login -u brunolv -p $credentials_PSW"
+                sh "docker login -u $credentials_USR -p $credentials_PSW"
                 sh "docker image push $registry:$BUILD_NUMBER"
                 sh "docker image rm $registry:$BUILD_NUMBER"
             }
         }
         stage('Deploy and smoke test') {
             steps {
-                sh 'jenkins/scripts/deploy.sh'
+                chmod +x './jenkins/scripts/deploy.sh'
+                sh './jenkins/scripts/deploy.sh'
             }
         }
         stage('Cleanup') {
             steps{
-                sh 'jenkins/scripts/cleanup.sh'
+                sh './jenkins/scripts/cleanup.sh'
             }
         }
     }
